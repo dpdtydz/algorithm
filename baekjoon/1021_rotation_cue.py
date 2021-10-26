@@ -10,16 +10,23 @@
 # 이 위치는 가장 처음 큐에서의 위치이다.) 이때, 그 원소를 주어진 순서대로 뽑아내는데 드는 2번, 3번 연산의
 # 최솟값을 출력하는 프로그램을 작성하시오.
 
-n, m = map(int, input().split())
-arr = list(map(int, input().split()))
-q = list(range(1, n + 1))
-ret = 0
-
+n, m = map(int, input().split())  # 뽑을 수 있는 수의 범위 n, 뽑을 수 잇는 횟수
+arr = list(map(int, input().split()))  # 뽑힌 수
+q = list(range(1, n + 1))  # q에는 1부터 뽑을수 있는 범위만큼의 list가 들어가있다.
+ret = 0  # 왼쪽이나 오른쪽으로 이동시키는 연산이 수행될때마다 증가
+# input 10 3일때
+# q= [1 2 3 4 5 6 7 8 9 10]
+# arr=[2 9 5]
 for target in arr:
+    # arr 2, 9 ,5 가 주체
     idx = q.index(target)
+    # index 값을가질 x 에는 모든 범위가 들어있는 q에서 주체가되는 지금 숫자를 받아온다(2,9,5)중 하나
     if len(q) // 2 >= idx:
+        # 만약 q의 길이를 반으로 접엇을때 지금의 위치가 왼쪽에 가깝다면 idx 의 위치까지 ret에 idx의 증감값을 더해준다.
         ret += idx
     else:
         ret += len(q) - idx
-    q= q[idx+1:] + q[:idx]
+        # 혹은 idx가 끝에 있다면 1부터 뽑을수 있는 범위만큼의 list를 반전시켜
+    q = q[idx + 1:] + q[:idx]
+    #끝값과 첫값 + 자신을 제외한 남아있는 q를 받아온다
 print(ret)
