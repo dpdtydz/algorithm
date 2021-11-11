@@ -16,9 +16,9 @@
 #
 # 출력
 # 첫 번째 줄에 손익분기점 즉 최초로 이익이 발생하는 판매량을 출력한다. 손익분기점이 존재하지 않으면 -1을 출력한다
-money, pay, notbok = map(int, input().split())
-lot = + money + pay
-while True:
-    count = + 1
-    total =+ lot + lot
-    print(total)
+addCost, varCost, salCost = map(int, input().split())
+
+if varCost >= salCost:
+    print(-1)
+else:
+    print(int(addCost / (salCost - varCost) + 1))
