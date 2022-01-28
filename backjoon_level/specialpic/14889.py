@@ -16,4 +16,15 @@ matrix = []
 for _ in range(n):
     matrix.append((list((map(int, input().split())))))
 result = int(1e9)
-for r1 in c
+for r1 in c(array, n // 2):  # n/2 만큼
+    start, link = 0, 0
+    r2 = list(set(array) - set(r1))  # 중복제거
+    for r in c(r1, 2):
+        start += matrix[r[0]][r[1]]
+        start += matrix[r[1]][r[0]]
+    for r in c(r2, 2):
+        link += matrix[r[0]][r[1]]
+        link += matrix[r[1]][r[0]]
+    result = min(result, abs(start - link))  # 횟수는 무조건 정수
+
+print(result)
